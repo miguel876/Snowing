@@ -47,15 +47,15 @@
     <script>
     function createSnow(){
         window.setInterval(function(){
-            //Criar uma nova bola
+            //Create a new ball
             var snowFlake = document.createElement("div");
-            //Atribuir a classe
+            //Add class
             snowFlake.classList.add("snowflake");
-            //Adicionar segunda classe aleatória
+            //Add a second random class
             snowFlake.classList.add("snowflake--z" + (Math.floor(Math.random() * 3) + 1));
-            //Colocar outra posição
+            //Put it in another position
             snowFlake.style.left = (Math.random() * 100) + "%";
-            //Atribuir ao corpo
+            //Attach to the body
             document.body.appendChild(snowFlake);
             
             //Erase bottom snowflakes
