@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <title>Snow</title>
+</head>
+<body style="background-color:black;">
+    <style>
+        .snowflake{
+            animation: fall 15s 1;
+            animation-fill-mode: forwards;
+            position: absolute;
+            left:80%;
+            border-radius: 50%;
+            bottom: 100%;
+        }
+            
+            .snowflake--z1{
+                background-color: rgba(255,255,255,1);
+                height: 10px;
+                width: 10px;
+            }
+
+            .snowflake--z2{
+                background-color: rgba(255,255,255,0.7);
+                height: 8px;
+                width: 8px;
+            }
+
+            .snowflake--z3{
+                background-color: rgba(255,255,255,0.4);
+                height: 6px;
+                width: 6px;
+            }
+
+        @keyframes fall {
+            0%    {bottom: 100%;}
+            100%  {bottom: 0;}
+        }
+
+    </style>
+    <script>
+    function createSnow(){
+        window.setInterval(function(){
+            //Criar uma nova bola
+            var snowFlake = document.createElement("div");
+            //Atribuir a classe
+            snowFlake.classList.add("snowflake");
+            //Adicionar segunda classe aleatória
+            snowFlake.classList.add("snowflake--z" + (Math.floor(Math.random() * 3) + 1));
+            //Colocar outra posição
+            snowFlake.style.left = (Math.random() * 100) + "%";
+            //Atribuir ao corpo
+            document.body.appendChild(snowFlake);
+            
+            //Erase bottom snowflakes
+            //Check every flake
+            $(".snowflake").each(function(){
+                if($(this).css("bottom") == "0px"){
+                    $(this).remove();
+                }
+            });
+        },100);
+        
+    }
+
+    createSnow();
+
+    </script>
+
+    <div class="snowflake"></div>
+
+
+</body>
+</html>
