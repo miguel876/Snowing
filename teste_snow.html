@@ -45,36 +45,34 @@
 
     </style>
     <script>
-    function createSnow(){
+    function createSnow(time){
+        //Check if time is an integer or empty
+        if(!Number.isInteger(time) || time == "" || time == null) time = 100;//Default number
+    
         window.setInterval(function(){
-            //Create a new ball
-            var snowFlake = document.createElement("div");
-            //Add class
-            snowFlake.classList.add("snowflake");
-            //Add a second random class
-            snowFlake.classList.add("snowflake--z" + (Math.floor(Math.random() * 3) + 1));
-            //Put it in another position
-            snowFlake.style.left = (Math.random() * 100) + "%";
-            //Attach to the body
-            document.body.appendChild(snowFlake);
+            //Criar uma nova bola
+            var snowflake = document.createElement("div");
+            //Atribuir a classe
+            $(snowflake).addClass("snowflake");
+            //Adicionar segunda classe aleatória
+            $(snowflake).addClass("snowflake--z" + (Math.floor(Math.random() * 3) + 1));
+            //Colocar outra posição
+            $(snowflake).css({"left": (Math.random() * 99) + "%"});
+            //Atribuir ao corpo
+            $("body").append(snowflake);
             
             //Erase bottom snowflakes
             //Check every flake
             $(".snowflake").each(function(){
-                if($(this).css("bottom") == "0px"){
-                    $(this).remove();
-                }
+                if($(this).css("bottom") == "0px") $(this).remove();  
             });
-        },100);
+        },time);
         
     }
 
-    createSnow();
+    createSnow(100);
 
     </script>
-
-    <div class="snowflake"></div>
-
 
 </body>
 </html>
